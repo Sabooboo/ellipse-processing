@@ -1,5 +1,5 @@
-static final int ELLIPSE_WIDTH = 100;
-static final int ELLIPSE_HEIGHT = 100;
+static final int ELLIPSE_WIDTH = 300;
+static final int ELLIPSE_HEIGHT = 400;
 
 static final int POINT_SPACING = 5;
 
@@ -28,7 +28,6 @@ void draw() {
   );
   
   // draw points
-  stroke(255, 0, 255);
   drawPoints();
 }
 
@@ -46,8 +45,11 @@ void drawPoints() {
   for (float i = 1; i < ELLIPSE_WIDTH; i+= POINT_SPACING) {
     for (float j = 1; j < ELLIPSE_HEIGHT; j += POINT_SPACING) {
        if (pointWithinBounds(i - ELLIPSE_WIDTH / 2, j - ELLIPSE_HEIGHT / 2)) {
-         point(i - ELLIPSE_WIDTH / 2, j - ELLIPSE_HEIGHT / 2);
+         stroke(255, 0, 255);
+       } else {
+        stroke(0, 255, 255); 
        }
+       point(i - ELLIPSE_WIDTH / 2, j - ELLIPSE_HEIGHT / 2);
     }
   }
 }
