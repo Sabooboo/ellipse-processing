@@ -1,7 +1,7 @@
 static final int ELLIPSE_WIDTH = 100;
 static final int ELLIPSE_HEIGHT = 100;
 
-static final int POINT_SPACING = 3;
+static final int POINT_SPACING = 5;
 
 
 void setup() {
@@ -32,34 +32,33 @@ void draw() {
   drawPoints();
 }
 
-boolean pointWithinBounds(int x, int y) {
-  double angle = getDegrees(x, y);
-  double ellipseRadius = getRadiusAtAngle((float) angle);
+boolean pointWithinBounds(float x, float y) {
+  float angle = getDegrees(x, y);
+  float ellipseRadius = getRadiusAtAngle(angle);
   // sqrt(x^2 + y^2) == radius of point
-  double distance =  sqrt(x*x + y*y);
-  println("(" + x + "," + y + ") => " + distance);
+  float distance =  sqrt(x*x + y*y);
+  println("(" + x + "," + y + ") => " + distance + " " + ellipseRadius);
   
-  return distance < ellipseRadius;
+  return abs(distance) < ellipseRadius;
 }
 
 void drawPoints() {
-  for (int i = 1; i < ELLIPSE_WIDTH; i+= POINT_SPACING) {
-    for (int j = 1; j < ELLIPSE_HEIGHT; j += POINT_SPACING) {
-      // line(0, 0, i - ELLIPSE_WIDTH / 2, j - ELLIPSE_HEIGHT / 2);
-       if (pointWithinBounds(i - ELLIPSE_WIDTH, j - ELLIPSE_HEIGHT)) {
-        point(i - ELLIPSE_WIDTH / 2, j - ELLIPSE_HEIGHT / 2);
+  for (float i = 1; i < ELLIPSE_WIDTH; i+= POINT_SPACING) {
+    for (float j = 1; j < ELLIPSE_HEIGHT; j += POINT_SPACING) {
+       if (pointWithinBounds(i - ELLIPSE_WIDTH / 2, j - ELLIPSE_HEIGHT / 2)) {
+         point(i - ELLIPSE_WIDTH / 2, j - ELLIPSE_HEIGHT / 2);
        }
     }
   }
 }
 
-double getDegrees(int x, int y) {
-  float theta = atan((float) y / (float) x) * 180 / PI;
+float getDegrees(float x, float y) {
+  float theta = atan(y / x) * 180 / PI;
   return theta;
 }
 
-double getRadiusAtAngle(float theta) {
-  double radiusAtAngle = (
+float getRadiusAtAngle(float theta) {
+  float diamAtAngle = (
     (ELLIPSE_WIDTH * ELLIPSE_HEIGHT) / (
       sqrt(
         (ELLIPSE_WIDTH * ELLIPSE_WIDTH) * (sin(theta) * sin(theta))
@@ -67,7 +66,7 @@ double getRadiusAtAngle(float theta) {
       )
     )
   );
-  return (float) radiusAtAngle;
+  return diamAtAngle / 2f;
 }
 
 void drawEllipse(int a, int b) {
