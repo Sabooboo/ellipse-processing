@@ -1,7 +1,7 @@
-static final int ELLIPSE_WIDTH = 100;
-static final int ELLIPSE_HEIGHT = 100;
+static final int ELLIPSE_WIDTH = 450;
+static final int ELLIPSE_HEIGHT = 380;
 
-static final int POINT_SPACING = 5;
+static final int POINT_SPACING = 10;
 
 
 void setup() {
@@ -13,19 +13,19 @@ void setup() {
 
 void draw() {
   // draw ellipse
-  stroke(255);
+  stroke(150);
   translate(width/2, height/2);
-  // drawEllipse(ELLIPSE_WIDTH, ELLIPSE_HEIGHT);
+   drawEllipse(ELLIPSE_WIDTH, ELLIPSE_HEIGHT);
   
   // draw rectangle
-  stroke(0, 255, 255);
+  stroke(100);
  
-  //rect(
-  //  -ELLIPSE_WIDTH / 2,
-  //  -ELLIPSE_HEIGHT / 2,
-  //  ELLIPSE_WIDTH,
-  //  ELLIPSE_HEIGHT
-  //);
+  rect(
+    -ELLIPSE_WIDTH / 2,
+    -ELLIPSE_HEIGHT / 2,
+    ELLIPSE_WIDTH,
+    ELLIPSE_HEIGHT
+  );
   
   // points
   drawPoints();
@@ -39,12 +39,12 @@ void drawPoints() {
          stroke(0, 255, 0);
          dots++;
        } else {
-        stroke(255, 0, 0); 
+        stroke(100, 0, 0); 
        }
        point(i - ELLIPSE_WIDTH / 2, j - ELLIPSE_HEIGHT / 2);
     }
   }
-  println(dots);
+  println(dots +  " dots within ellipse");
 }
 
 boolean pointWithinBounds(float x, float y) {
